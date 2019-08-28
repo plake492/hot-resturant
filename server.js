@@ -14,30 +14,32 @@ app.use(express.json());
 // =============================================================
 const tables = [
     {
-      id: 1,
+      routeName: "ashleymorales",
       name: "Ashley Morales",
       email: "ashley@me.com",
-      phone: 407-407-4077,
+      phone: "407-407-4077",
+      id: "garbage"
     },
     {
-        id: 2,
+        routeName: "connordurham",
         name: "Connor Durham",
         email: "connor@me.com",
-        phone: 222-222-2225,
+        phone: "222-222-2225",
+        id: "moregarbage"
     },
     {
-        id: 3,
+        routeName: "patricklake",
         name: "Patrick Lake",
         email: "patrick@me.com",
-        phone: 555-555-4555,
+        phone: "555-555-4555",
+        id: "words"
     },
-  ];
-  const waitingList = [
     {
-        id: 6,
+        routeName: "jenross",
         name: "Jen Ross",
         email: "jen@me.com",
-        phone: 333-333-3336,
+        phone: "333-333-3336",
+        id: "themostgarbage"
     },
   ];
   // Routes
@@ -47,17 +49,22 @@ app.get("/", function(req, res) {
     res.sendFile(path.join(__dirname, "index.html"));
   });
   
-  app.get("/tables", function(req, res) {
+app.get("/tables", function(req, res) {
     res.sendFile(path.join(__dirname, "tables.html"));
   });
+
+  app.get("/reserve", function(req, res) {
+    res.sendFile(path.join(__dirname, "reserve.html"));
+  });
   
-  // Displays all tables
-  app.get("/tables", function(req, res) {
+  
+//   Displays all tables
+  app.get("/api/people", function(req, res) {
     return res.json(tables);
   });
   
   // Displays a single character, or returns false
-  app.get("/:tables", function(req, res) {
+  app.get("/api/people/:tables", function(req, res) {
     let chosen = req.params.tables;
   
     console.log(chosen);
@@ -72,14 +79,11 @@ app.get("/", function(req, res) {
   });
   
   // Create New Reservation - takes in JSON input
-  app.post("/reserve", function(req, res) {
-    // req.body hosts is equal to the JSON post sent from the user
-    // This works because of our body parsing middleware
+  app.post("/api/people", function(req, res) {
+ 
     let newTable = req.body;
-  
-    // Using a RegEx Pattern to remove spaces from newCharacter
-    // You can read more about RegEx Patterns later https://www.regexbuddy.com/regex.html
-    newTable.id = newTable.name.replace(/\s+/g, "").toLowerCase();
+
+    newTable.routeName = newTable.name.replace(/\s+/g, "").toLowerCase();
   
     console.log(newTable);
   

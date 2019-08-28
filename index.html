@@ -4,38 +4,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Tables</title>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/core.js"></script>   
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <style>
-            .jumbotron{
-               text-align:center;
-               width:80%;
-               margin-left: 10%;
-               margin-right:10%;
-            }
-            .card{
-                text-align:center;
-                width:80%;
-                margin-left: 10%;
-                margin-right:10%;
-                margin-bottom: 30px
-            }
-    </style>
-</head>
-<body>
+    <title>Document</title>
     
-        <div class="jumbotron jumbotron-fluid">
-            <h2 class="display-4">Hot Restaurant</h2>
-            <p class="lead"></p>
-            <hr class="my-4">
-            <h2>Welcome</h2>
-            <p class="lead">
-                <a class="btn btn-primary btn-lg" id="tablebutton" href="#" role="button">View tables</a>
-            </p>
-        </div>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+   
+​
+</head>
+​
+    <style>
+        .jumbotron{
+           text-align:center;
+           width:80%;
+           margin-left: 10%;
+           margin-right:10%;
+        }
+        .btn-secondary{
+            background-color: brown;
+          
+        }
+        p.text{
+            font-size: 35px;
+        }
+        a:link {
+            color: white;
+        }
+        a:visited {
+            color: white;
+        } 
+        a:hover {
+            color: rgb(134, 134, 134)
+        }
+        a:active {
+            color: rgb(134, 134, 134)
+        }
 
+        </style>
+ 
+           <div class="jumbotron jumbotron-fluid">
+                <i class="fab fa-hotjar"></i>
+               <h1 class="display-4"><b>Hot Restaurant</b></h1>
+    
+               <hr class="my-4">
+               <p class="text">We only have 5 tables! Book your seat before they all are gone!</p> 
+​
+               <p class="lead">
+            <button type="button" class="btn btn-primary btn-lg"><a href="/tables">View Tables</a></button> 
+            <button type="button" class="btn btn-secondary btn-lg"><a href="/reserve">Make Reservation</a></button>
+              </p>
+             </div>
+             
+             <h6 style="margin-left: 10%;margin-right:10%; margin-top:2%"><a style="color:black" href="/api/people">API Table Link</a></h6>   
+     
 </body>
 </html>

@@ -11,16 +11,44 @@
     <title>Reservations</title>
 </head>
 <style>
+
 .jumbotron{
     text-align:center;
     width:80%;
     margin-left: 10%;
     margin-right:10%;
 }
-​
 #tablebutton {
     margin: 20px;
 }
+#formbox {
+    padding:2%;
+}
+.reservebox {
+    width:80%;
+    margin-left: 10%;
+    margin-right:10%;
+}
+.lead {
+    color: white;
+}
+a:link {
+    color: white;
+  }
+  
+  a:visited {
+    color: white;
+  }
+  
+  a:hover {
+    color: rgb(134, 134, 134)
+  }
+  
+  a:active {
+    color: rgb(134, 134, 134)
+  }
+
+
 </style>
 <body>
     
@@ -30,9 +58,67 @@
         <hr class="my-4">
         <h2>Make your reservation</h2>
         <p class="lead">
-          <a class="btn btn-primary btn-lg" id="tablebutton" href="#" role="button">View tables</a>
+            <button type="button" class="btn btn-primary btn-lg"><a href="/">Home Page</a></button> 
+            <button type="button" class="btn btn-primary btn-lg"><a href="/tables">View Tables</a></button> 
         </p>
-      </div>
+    </div>
 ​
+      <div class="card reservebox">
+        <div class="card-header">
+          Featured
+        </div>
+        <form id="formbox">
+            <div class="form-group">
+              <label for="exampleInputEmail1">Name</label>
+              <input type="name" class="form-control" id="name" aria-describedby="nameHelp" placeholder="Enter your name">
+    
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Phone Number</label>
+                <input type="phone" class="form-control" id="phone" aria-describedby="phoneHelp" placeholder="Enter your phone number">
+         
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Email address</label>
+                <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+         
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Unique ID</label>
+                <input type="id" class="form-control" id="id" aria-describedby="idHelp" placeholder="Enter a unique ID">
+         
+            </div>
+           
+    
+            <button type="submit" class="btn btn-primary" id="add-btn" >Submit</button>
+          </form>
+      </div>
+     
+
+      <h6 style="margin-left: 10%;margin-right:10%; margin-top:2%"><a style="color:black" href="/api/people">API Table Link</a></h6>   
+
+​
+<script type="text/javascript">
+    // Question: What does this code do?
+    $("#add-btn").on("click", function(event) {
+      event.preventDefault();
+
+      var newTable = {
+        name: $("#name").val().trim(),
+        phone: $("#phone").val().trim(),
+        email: $("#email").val().trim(),
+        id: $("#id").val().trim()
+      };
+
+      // Question: What does this code do??
+      $.post("/api/people", newTable)
+        .then(function(data) {
+          console.log(data);
+          alert("You have successfully reserved a table!");
+        });
+
+    });
+
+  </script>
 </body>
 </html>

@@ -23,6 +23,21 @@
                 margin-right:10%;
                 margin-bottom: 30px
             }
+            a:link {
+                color: white;
+            }
+            
+            a:visited {
+                color: white;
+            }
+            
+            a:hover {
+                color: rgb(134, 134, 134)
+            }
+            
+            a:active {
+                color: rgb(134, 134, 134)
+            }
     </style>
 </head>
 <body>
@@ -31,10 +46,12 @@
             <h2 class="display-4">Hot Restaurant</h2>
             <p class="lead"></p>
             <hr class="my-4">
-            <h2>Make your reservation</h2>
+            <h2>Veiw Current Tables</h2>
             <p class="lead">
-                <a class="btn btn-primary btn-lg" id="tablebutton" href="#" role="button">View tables</a>
+                <button type="button" class="btn btn-primary btn-lg"><a href="/">Home Page</a></button> 
+                <button type="button" class="btn btn-secondary btn-lg"><a href="/reserve">Make Reservation</a></button>
             </p>
+
         </div>
 
 
@@ -48,12 +65,48 @@
         <div class="card-header">Waiting List</div>
         <div class="card-body" id="waiting"><!-- STUFF GOES HERE --></div>
     </div>
+
+    <h6 style="margin-left: 10%;margin-right:10%; margin-top:2%"><a style="color:black" href="/api/people">API Table Link</a></h6>   
+    <h6 style="margin-left: 10%;margin-right:10%; margin-top:2%"><a href="#"    onclick="clearAPI()" style="color:black" >Clear Table</a></h6>   
+
     
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
     <script>   
-    
+       $.get("/api/people", function(data) {
 
+        for (let i = 0; i < 5; i++) {
+            console.log(data[i]);
+            let currentRes= $(`
+            <div class='list-group-item column2'>
+                <h2>Name: ${data[i].name}</h2> 
+                <h3>phone: ${data[i].phone}</h3>
+                <h3>email: ${data[i].email}</h3>
+                <h3>id: ${data[i].id}</h3>
+            </div>
+            `)
+            $("#currentRes").append(currentRes);
+            }
+
+            for (let i = 5; i < data.length; i++) {
+            console.log(data[i]);
+            let currentRes= $(`
+            <div class='list-group-item column2'>
+                <h2>Name: ${data[i].name}</h2> 
+                <h3>phone: ${data[i].phone}</h3>
+                <h3>email: ${data[i].email}</h3>
+                <h3>id: ${data[i].id}</h3>
+            </div>
+            `)
+            $("#waiting").append(currentRes);
+            }
+       });
+
+       function clearAPI() {
+            $("#currentRes").empty();
+            $("#waiting").empty();
+       }
     </script>
 </body>
 </html>
